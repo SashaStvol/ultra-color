@@ -1,6 +1,6 @@
 /**
  * Ultra Color - Main entry point
- * @module ultra-color
+ * @module fast-color-js
  */
 
 export { Color } from './Color.js';
