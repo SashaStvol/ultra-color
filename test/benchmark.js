@@ -1,6 +1,6 @@
 import { Color } from '../src/Color.js';
 
-console.log('🚀 Ultra Color Benchmark\n');
+console.log('🚀 Fast-Color-Js Benchmark\n');
 
 function benchmark(name, fn, iterations = 1000000) {
     const start = performance.now();
