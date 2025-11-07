@@ -3,7 +3,7 @@
  * Demonstrates library usage in server-side applications
  */
 
-const { Color } = require("fast-color-js");
+const { Color } = require("../src/Color.js");
 
 console.log('🎨 Fast-Color-Js - Node.js Examples\n');
 
