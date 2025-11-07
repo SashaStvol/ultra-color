@@ -1,0 +1,6 @@
+test/
+docs/
+examples/
+.gitignore
+.npmignore
+jsdoc.json
