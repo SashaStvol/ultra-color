@@ -1,8 +1,8 @@
-# Ultra Color 🚀
+# Fast Color Js 🚀
 
-[![npm version](https://badge.fury.io/js/ultra-color.svg)](https://www.npmjs.com/package/ultra-color)
+[![npm version](https://badge.fury.io/js/ultra-color.svg)](https://www.npmjs.com/package/fast-color-js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Bundle Size](https://img.shields.io/bundlephobia/minzip/ultra-color)](https://bundlephobia.com/package/ultra-color)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/ultra-color)](https://bundlephobia.com/package/fast-color-js)
 
 The fastest color manipulation library for JavaScript. Optimized for games, real-time graphics, and bulk processing.
 
@@ -10,7 +10,7 @@ The fastest color manipulation library for JavaScript. Optimized for games, real
 
 **10x faster** than other color libraries:
 
-| Operation | ultra-color | color.js | tinycolor |
+| Operation | fast-color-js | color.js | tinycolor |
 |-----------|-------------|----------|-----------|
 | HEX → RGB | 25ms | 250ms | 180ms |
 | RGB → HEX | 30ms | 280ms | 200ms |
@@ -19,7 +19,7 @@ The fastest color manipulation library for JavaScript. Optimized for games, real
 ## 🚀 Installation
 
 ```bash
-npm install ultra-color
+npm install fast-color-js
 
 # Run tests
 npm test
