@@ -1,9 +1,7 @@
 {
   "name": "fast-color-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Ultra-fast color manipulation library for games and real-time applications",
-  "main": "src/index.js",
-  "type": "module",
   "keywords": [
     "color",
     "fast",
@@ -17,31 +15,38 @@
     "canvas",
     "graphics"
   ],
-  "author": "SashaStvol",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/SashaStvol/fast-color-js"
-  },
   "homepage": "https://github.com/SashaStvol/fast-color-js#readme",
   "bugs": {
     "url": "https://github.com/SashaStvol/fast-color-js/issues"
   },
-  "scripts": {
-    "test": "node test/unit.test.js",
-    "benchmark": "node test/benchmark.js",
-    "build": "npm run test && npm run benchmark",
-    "docs": "jsdoc src/ -r -d docs/"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SashaStvol/fast-color-js.git"
   },
+  "license": "MIT",
+  "author": "SashaStvol",
+  "type": "module",
   "exports": {
     ".": "./src/index.js",
     "./package.json": "./package.json"
+  },
+  "main": "src/index.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
   },
   "files": [
     "src/",
     "README.md",
     "LICENSE"
   ],
+  "scripts": {
+    "test": "node test/unit.test.js",
+    "benchmark": "node test/benchmark.js",
+    "build": "npm run test && npm run benchmark",
+    "docs": "jsdoc src/ -r -d docs/"
+  },
   "engines": {
     "node": ">=14.0.0"
   }
