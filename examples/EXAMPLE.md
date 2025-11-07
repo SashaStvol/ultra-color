@@ -1,5 +1,5 @@
 # Example
-
+```JavaScript
 import { Color } from 'fast-color-js';
 
 // Ultra-fast conversions
