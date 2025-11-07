@@ -1,5 +1,5 @@
 {
-  "name": "ultra-color",
+  "name": "fast-color-js",
   "version": "1.0.0",
   "description": "Ultra-fast color manipulation library for games and real-time applications",
   "main": "src/index.js",
