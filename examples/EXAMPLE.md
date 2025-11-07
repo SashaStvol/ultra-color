@@ -1,4 +1,5 @@
-#Example
+##Example
+
 import { Color } from 'fast-color-js';
 
 // Ultra-fast conversions
