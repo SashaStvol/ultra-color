@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultra Color - Browser Example</title>
+    <title>Fast-Color-Js - Browser Example</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -87,18 +87,18 @@
     </style>
 </head>
 <body>
-    <h1>🎨 Ultra Color - Browser Demo</h1>
+    <h1>Fast-Color-Js - Browser Demo</h1>
     <p>High-performance color manipulation library in action</p>
 
     <div class="container">
         <!-- Left Panel: Color Conversions -->
         <div class="panel">
-            <h2>🔄 Color Conversions</h2>
+            <h2>Color Conversions</h2>
             
             <div>
                 <h3>HEX to RGB</h3>
                 <input type="text" id="hexInput" value="#ff8040" placeholder="#RRGGBB">
-                <button onclick="convertHexToRgb()">Convert</button>
+                <button id="convertHexToRgbBtn">Convert</button>
                 <div class="color-info" id="hexToRgbResult"></div>
             </div>
 
@@ -107,34 +107,34 @@
                 <input type="number" id="rInput" value="255" min="0" max="255" placeholder="R">
                 <input type="number" id="gInput" value="128" min="0" max="255" placeholder="G">
                 <input type="number" id="bInput" value="64" min="0" max="255" placeholder="B">
-                <button onclick="convertRgbToHex()">Convert</button>
+                <button id="convertRgbToHexBtn">Convert</button>
                 <div class="color-info" id="rgbToHexResult"></div>
             </div>
 
             <div style="margin-top: 20px;">
                 <h3>HEX Validation</h3>
                 <input type="text" id="validateInput" value="#abc123" placeholder="#HEX">
-                <button onclick="validateHex()">Validate</button>
+                <button id="validateHexBtn">Validate</button>
                 <div class="color-info" id="validateResult"></div>
             </div>
         </div>
 
         <!-- Right Panel: Color Generation -->
         <div class="panel">
-            <h2>🎲 Color Generation</h2>
+            <h2>Color Generation</h2>
             
             <div>
                 <h3>Random Colors</h3>
-                <button onclick="generateRandomColors()">Generate 10 Random</button>
-                <button onclick="generateBrightColors()">Generate 10 Bright</button>
-                <button onclick="generatePastelColors()">Generate 10 Pastel</button>
+                <button id="generateRandomBtn">Generate 10 Random</button>
+                <button id="generateBrightBtn">Generate 10 Bright</button>
+                <button id="generatePastelBtn">Generate 10 Pastel</button>
                 <div class="color-grid" id="randomColors"></div>
             </div>
 
             <div style="margin-top: 20px;">
                 <h3>Color Palettes</h3>
-                <button onclick="generateHsvPalette()">HSV Palette (8 colors)</button>
-                <button onclick="generateGoldenPalette()">Golden Ratio Palette (8 colors)</button>
+                <button id="generateHsvBtn">HSV Palette (8 colors)</button>
+                <button id="generateGoldenBtn">Golden Ratio Palette (8 colors)</button>
                 <div class="color-grid" id="paletteColors"></div>
             </div>
         </div>
@@ -142,22 +142,15 @@
 
     <!-- Performance Section -->
     <div class="performance">
-        <h2>⚡ Performance Test</h2>
-        <button onclick="runPerformanceTest()">Run 100,000 Conversions</button>
+        <h2>Performance Test</h2>
+        <button id="performanceBtn">Run 100,000 Conversions</button>
         <div class="color-info" id="performanceResult"></div>
     </div>
 
     <script type="module">
-        import { Color } from './src/Color.js';
-
-        // Make Color available globally for the demo
-        window.Color = Color;
-
-        // Initial demo
-        generateRandomColors();
-        generateHsvPalette();
-
-        function convertHexToRgb() {
+        import { Color } from '../src/Color.js';
+        // Make functions available globally
+        window.convertHexToRgb = function() {
             const hex = document.getElementById('hexInput').value;
             const start = performance.now();
             const rgb = Color.hexToRgb(hex);
@@ -165,9 +158,9 @@
             
             document.getElementById('hexToRgbResult').innerHTML = 
                 `HEX: ${hex}<br>RGB: {r: ${rgb.r}, g: ${rgb.g}, b: ${rgb.b}}<br>Time: ${time.toFixed(3)}ms`;
-        }
+        };
 
-        function convertRgbToHex() {
+        window.convertRgbToHex = function() {
             const r = parseInt(document.getElementById('rInput').value);
             const g = parseInt(document.getElementById('gInput').value);
             const b = parseInt(document.getElementById('bInput').value);
@@ -177,9 +170,9 @@
             
             document.getElementById('rgbToHexResult').innerHTML = 
                 `RGB: (${r}, ${g}, ${b})<br>HEX: ${hex}<br>Time: ${time.toFixed(3)}ms`;
-        }
+        };
 
-        function validateHex() {
+        window.validateHex = function() {
             const hex = document.getElementById('validateInput').value;
             const start = performance.now();
             const isValid = Color.isHex(hex);
@@ -187,9 +180,9 @@
             
             document.getElementById('validateResult').innerHTML = 
                 `"${hex}" is ${isValid ? 'VALID' : 'INVALID'}<br>Time: ${time.toFixed(3)}ms`;
-        }
+        };
 
-        function generateRandomColors() {
+        window.generateRandomColors = function() {
             const container = document.getElementById('randomColors');
             container.innerHTML = '';
             
@@ -204,9 +197,9 @@
                 colorItem.onclick = () => copyToClipboard(hex);
                 container.appendChild(colorItem);
             }
-        }
+        };
 
-        function generateBrightColors() {
+        window.generateBrightColors = function() {
             const container = document.getElementById('randomColors');
             container.innerHTML = '';
             
@@ -222,9 +215,9 @@
                 colorItem.onclick = () => copyToClipboard(hex);
                 container.appendChild(colorItem);
             }
-        }
+        };
 
-        function generatePastelColors() {
+        window.generatePastelColors = function() {
             const container = document.getElementById('randomColors');
             container.innerHTML = '';
             
@@ -240,9 +233,9 @@
                 colorItem.onclick = () => copyToClipboard(hex);
                 container.appendChild(colorItem);
             }
-        }
+        };
 
-        function generateHsvPalette() {
+        window.generateHsvPalette = function() {
             const container = document.getElementById('paletteColors');
             container.innerHTML = '';
             
@@ -258,9 +251,9 @@
                 colorItem.onclick = () => copyToClipboard(hex);
                 container.appendChild(colorItem);
             });
-        }
+        };
 
-        function generateGoldenPalette() {
+        window.generateGoldenPalette = function() {
             const container = document.getElementById('paletteColors');
             container.innerHTML = '';
             
@@ -276,9 +269,9 @@
                 colorItem.onclick = () => copyToClipboard(hex);
                 container.appendChild(colorItem);
             });
-        }
+        };
 
-        function runPerformanceTest() {
+        window.runPerformanceTest = function() {
             const iterations = 100000;
             const testHex = "#a1b2c3";
             
@@ -292,7 +285,7 @@
             // Test numberToHex
             start = performance.now();
             for (let i = 0; i < iterations; i++) {
-                Color.numberToHex(0xA1B2C3);
+                Color.numberToHexRgb(0xA1B2C3);
             }
             const numberToHexTime = performance.now() - start;
             
@@ -301,7 +294,7 @@
                  hexToNumber: ${hexToNumberTime.toFixed(2)}ms<br>
                  numberToHex: ${numberToHexTime.toFixed(2)}ms<br>
                  Average: ${((hexToNumberTime + numberToHexTime) / 2).toFixed(2)}ms per operation`;
-        }
+        };
 
         function getContrastColor(hex) {
             // Simple contrast calculation for text color
@@ -317,6 +310,23 @@
                 console.log(`Copied: ${text}`);
             });
         }
+
+        // Initialize event listeners
+            document.getElementById('convertHexToRgbBtn').addEventListener('click', convertHexToRgb);
+            document.getElementById('convertRgbToHexBtn').addEventListener('click', convertRgbToHex);
+            document.getElementById('validateHexBtn').addEventListener('click', validateHex);
+            document.getElementById('generateRandomBtn').addEventListener('click', generateRandomColors);
+            document.getElementById('generateBrightBtn').addEventListener('click', generateBrightColors);
+            document.getElementById('generatePastelBtn').addEventListener('click', generatePastelColors);
+            document.getElementById('generateHsvBtn').addEventListener('click', generateHsvPalette);
+            document.getElementById('generateGoldenBtn').addEventListener('click', generateGoldenPalette);
+            document.getElementById('performanceBtn').addEventListener('click', runPerformanceTest);
+
+            // Initial demo
+            generateRandomColors();
+            generateHsvPalette();
+        
+
     </script>
 </body>
 </html>
