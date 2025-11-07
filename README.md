@@ -20,12 +20,3 @@ The fastest color manipulation library for JavaScript. Optimized for games, real
 
 ```bash
 npm install fast-color-js
-
-# Run tests
-npm test
-
-# Run benchmarks
-npm run benchmark
-
-# Build documentation
-npm run docs
