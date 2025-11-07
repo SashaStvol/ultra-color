@@ -1,4 +1,4 @@
-import { Color } from 'ultra-color';
+import { Color } from 'fast-color-js';
 
 // Ultra-fast conversions
 const num = Color.hexToNumber("#ff8040");
