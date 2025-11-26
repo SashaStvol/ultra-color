@@ -1,7 +1,7 @@
 /**
  * Ultra-fast color manipulation library for games and real-time applications
  * @class Color
- * @version 1.0.4
+ * @version 1.0.5
  * @author SashaStvol
  * @license MIT
  */
@@ -13,7 +13,13 @@ export class Color {
      * @readonly
      */
     static HEX = "0123456789abcdef";
-
+    /**
+    * Lookup array for hex digits (0-9, a-f)
+     * @type {array}
+     * @static
+     * @readonly
+    */
+    static hexTable = new Uint8Array([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10,0,0,0,0,0,0,0,11,12,13,14,15,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,12,13,14,15,16]);
     // Commented out shared objects for safety
     // static #rgb = {r:0,g:0,b:0};
     // static #rgba = {r:0,g:0,b:0,a:0};
@@ -107,7 +113,7 @@ export class Color {
      * Color.hexToNumberBit("#a1b2c3") // → 10597059
      * Color.hexToNumberBit("ffffff")  // → 16777215
      */
-    static hexToNumberBit(hex) {
+    /*static hexToNumberBit(hex) {
         let num = 0;
         for (let i =  hex[0] === "#" ? 1 : 0; i < hex.length; i++) {
             // Mathematical formula converts hex chars to numbers:
@@ -115,7 +121,18 @@ export class Color {
             num = (num << 4) | (hex.charCodeAt(i) % 32 + 9) % 25;
         }
         return num;
-    }
+    }*/
+    static hexToNumberBit(hex) {
+     let num = 0;
+     for (let i = hex[0]==="#"?1:0; i < hex.length; i++) {
+      let code = hex.charCodeAt(i);
+      if(code > 102) return num;
+      let num1 = Color.hexTable[code];
+      if(!num1) return num;
+      num = num1 - 1 | (num << 4);
+     }
+    return num;
+   }
 
     /**
      * Converts HEX string to number using arithmetic (safe for large numbers)
@@ -128,12 +145,16 @@ export class Color {
      * Color.hexToNumber("20000000000000") // → 9007199254740992
      */
     static hexToNumber(hex) {
-        let num = 0;
-        for (let i =  hex[0] === "#" ? 1 : 0; i < hex.length; i++) {
-            num = num * 16 + (hex.charCodeAt(i) % 32 + 9) % 25;
-        }
-        return num;
-    }
+     let num = 0;
+     for (let i = hex[0]==="#"?1:0; i < hex.length; i++) {
+      let code = hex.charCodeAt(i);
+      if(code > 102) return num;
+      let num1 = Color.hexTable[code];
+      if(!num1) return num;
+      num = num1 - 1 + num * 16;
+     }
+    return num;
+   }
 
     /**
      * Validates HEX color string format
@@ -149,14 +170,15 @@ export class Color {
      * Color.isHex("#xyz123") // → false
      */
     static isHex(hex) {
-        if (typeof hex !== "string" || hex[0] !== "#") return false;
-        let len = hex.length - 1;
-        if (len !== 6 && len !== 8 && len !== 3 && len !== 4) return false;
-        for (let i = 1; i < hex.length; i++) {
-            if ((hex.charCodeAt(i) % 32 + 9) % 25 > 15) return false;
-        }
-        return true;
+    if (typeof hex !== "string" || hex[0] !== "#") return false;
+    let len = hex.length;
+    if (len !== 7 && len !== 9 && len !== 4 && len !== 5) return false;
+    for (let i = 1; i < len; i++) {
+     let code = hex.charCodeAt(i);
+        if (code > 102 || !Color.hexTable[code]) return false;
     }
+    return true;
+}
 
     /**
      * Converts HEX string to RGB object
